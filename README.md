@@ -144,10 +144,11 @@ yukio.loading: true; //- Ingin menambahkan loading messages ?
 module.exports = yukio;
 ```
 ## **All Contributors**  
-[![AxellNetwork](https://github.com/AxellNetwork.png?size=100)](https://github.com/AxellNetwork) | [![AndhikaGG](https://github.com/AndhikaGG.png?size=100)](https://github.com/AndhikaGG)  
+[![AxellNetwork](https://github.com/AxellNetwork.png?size=100)](https://github.com/AxellNetwork) | [![AndhikaGG](https://github.com/AndhikaGG.png?size=100)](https://github.com/AndhikaGG)  [![LeooxzyDekuu](https://github.com/LeooxzyDekuu.png?size=100)](https://github.com/LeooxzyDekuu)  
 ---|---  
+[LeooxzyDekuu](https://github.com/LeooxzyDekuu) | 
 [AxellNetwork](https://github.com/AxellNetwork) | [AndhikaGG](https://github.com/AndhikaGG)  
-Base Script | Penyumbang fitur
+Remake Base | Base Script | Penyumbang fitur
 
 ---
 
