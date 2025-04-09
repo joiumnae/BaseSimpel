@@ -1,6 +1,6 @@
 # **Rin Base Simple** 
 <p align="center">
-  <img title="HanakoBotz" src="https://i.pinimg.com/1200x/a3/bd/7b/a3bd7b04fa983dffc8f5341e8b2a3911.jpg">
+  <img title="Rin-Okumura-Simple" src="https://i.pinimg.com/1200x/a3/bd/7b/a3bd7b04fa983dffc8f5341e8b2a3911.jpg">
 </p>
 
 |                                          Creator                                                |
