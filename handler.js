@@ -126,7 +126,7 @@ module.exports = async (m, sock, store) => {
          if (plugin.loading) {
             m.react("🕐");
          }
-          if (plugin.premium && !m.isOwner) {
+          if (plugin.owner && !m.isOwner) {
             return m.reply(config.messages.owner);
           }
           if (plugin.premium && !isPrems) {
@@ -145,7 +145,7 @@ module.exports = async (m, sock, store) => {
             return m.reply(config.messages.botAdmin);
           }
         if (plugin.settings) {
-          if (plugin.settings.premium && !m.isOwner) {
+          if (plugin.settings.owner && !m.isOwner) {
             return m.reply(config.messages.owner);
           }
           if (plugin.settings.premium && !isPrems) {
