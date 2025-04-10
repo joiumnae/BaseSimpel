@@ -111,7 +111,7 @@ let yukio = async (m, {
 };
 
 yukio.help = ["ytmp3", "ytmp4"].map(v => v + ' *[ Request Lagu Yt Yg Pengen Di Putar ]* ');
-yukio.tags = ["downloader", "internet"];
+yukio.tags = ["downloader"];
 yukio.command = ["ytmp3", "ytmp4"];
 yukio.loading = true;
 yukio.limit = true;
