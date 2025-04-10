@@ -1,3 +1,10 @@
+// © HanakoBotz
+// • By: Leooxzy - Deku
+// • Owner: 6283136099660
+
+// By: Leooxzy
+// Bio cr: Krz
+
 class RinOkumura {
     constructor() {
         this.help = ["ai", "cloudai", "rin", "rinokumura"].map(v => v + ' *[ Menanyakan Pertanyaan Ai ]* ')
@@ -43,5 +50,7 @@ Jika user meminta kayak suruh ada tanda kutip atau segalanya kayak seperti ini: 
         });
     }
 };
+
+module.exports = new RinOkumura()
 
 module.exports = new RinOkumura()
