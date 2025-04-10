@@ -9,7 +9,7 @@ module.exports = {
     help: [],
     tags: ['info'],
     command: ['menu', 'dekugg', 'rinmenu'],
-    loading: true
+    loading: true,
     code: async (m, {
         conn,
         Func,
