@@ -64,7 +64,7 @@ class RinOkumura {
                         quoted: m
                     });
                 } else {
-                    await sock.sendMessage(m.cht, {
+                    await conn.sendMessage(m.cht, {
                         image: {
                             url: musically.image[0]
                         },
