@@ -23,7 +23,7 @@ module.exports = {
       throw `*⚠️ Perintah Tidak Lengkap!*\n\n> *Gunakan salah satu cara berikut:*\n  • Tag anggota dengan: @username\n  • Balas pesan anggota yang ingin dikeluarkan.\n\n📌 _Pastikan kamu memiliki hak sebagai admin grup._`;
     }
 
-    let user = await sock.onWhatsApp(who);
+    let user = await conn.onWhatsApp(who);
     if (!user[0].exists) {
       throw `*❌ Anggota Tidak Ditemukan!*\n\n> Akun WhatsApp ini tidak terdaftar atau sudah tidak aktif.`;
     }
