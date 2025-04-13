@@ -38,7 +38,7 @@ module.exports = {
             return m.reply("⚠️ Pengguna tersebut sudah menjadi anggota grup ini.");
         }
 
-        const resp = await sock.groupParticipantsUpdate(m.cht, [jid], "add");
+        const resp = await conm.groupParticipantsUpdate(m.cht, [jid], "add");
         for (let res of resp) {
             if (res.status === 421) {
                 m.reply(
@@ -75,7 +75,7 @@ module.exports = {
                             caption: `🌟 Hai @${res.jid.split("@")[0]}!\nAnda telah diundang oleh salah satu admin grup *${m.metadata.subject}*. Klik tombol di bawah untuk bergabung kembali!`,
                         },
                     }), {
-                        userJid: sock.user.jid
+                        userJid: conn.user.jid
                     },
                 );
 
