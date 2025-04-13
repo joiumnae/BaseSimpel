@@ -36,7 +36,7 @@ const config = {
       botAdmin: "*( Denied )* Lu siapa bukan Admin group",
       grootbotbup: "*( Denied )* Jadiin Yuta-Botz admin dulu baru bisa akses",
    },
-   database: "hanako-db",
+   database: "rin-db",
    tz: "Asia/Jakarta"
 }
 
