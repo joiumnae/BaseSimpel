@@ -36,7 +36,7 @@ ${m.prefix + m.command} okumura, rin --character`
         if (isManga) {
             Scraper.mal.MalSearchManga(input).then(async (a) => {
                 if (!a.length > 0) throw '⚠️ Pencarian Anda Tidak Di Temukan';
-                let caption = `🔍 Search Manga\n\n${a.map(v => `> • Title: ${v.title || ''}\n> • Type: ${v.type || ''}\n> • Vol: ${v.vol || ''}\n> • Score: ${v.score || ''}\n> • Url: ${v.link || ''}`).join("\n\n")}`;
+                let caption = `🔍 Search Manga\n\n${a.map((v, i) => `\`[ ${i + 1} ]\`\n> • Title: ${v.title || ''}\n> • Type: ${v.type || ''}\n> • Vol: ${v.vol || ''}\n> • Score: ${v.score || ''}\n> • Url: ${v.link || ''}`).join("\n\n")}`;
                 await conn.sendAliasMessage(m.chat, {
                     text: caption
                 }, a.map((v, i) => ({
@@ -48,7 +48,7 @@ ${m.prefix + m.command} okumura, rin --character`
             let input = text.replace(/--\w+(\=\w+)?/g, "").trim();
             Scraper.mal.MalSearchCharacter(input).then(async (a) => {
                 let caption = `🔍Search Character\n\n`;
-                caption += a.map((v, i) => `> • *Nama:* ${v.name || ''}\n> • *Alias:* ${v.alias || ''}\n> • *Anime:* ${v.anime || ''}\n> • *Manga:* ${v.manga || ''}\n> • *Url:* ${v.url || ''}`).join("/n/n");
+                caption += a.map((v, i) => `\`[ ${i + 1} ]\`\n> • *Nama:* ${v.name || ''}\n> • *Alias:* ${v.alias || ''}\n> • *Anime:* ${v.anime || ''}\n> • *Manga:* ${v.manga || ''}\n> • *Url:* ${v.url || ''}`).join("\n\n");
                 m.reply(caption);
             })
         } else if (Func.isUrl(text)) {
@@ -65,7 +65,7 @@ ${m.prefix + m.command} okumura, rin --character`
         } else {
             Scraper.mal.MalSearchAnime(text).then(async (a) => {
                 if (!a.length > 0) throw '⚠️ Pencarian Anda Tidak Di Temukan';
-                let caption = `🔍 Search Anime\n\n${a.map(v => `> • Title: ${v.title || ''}\n> • Type: ${v.type || ''}\n> • Score: ${v.score || ''}\n> • Url: ${v.url || ''}`).join("\n\n")}`;
+                let caption = `🔍 Search Anime\n\n${a.map((v, i) => `\`[ ${i + 1} ]\`\n> • Title: ${v.title || ''}\n> • Type: ${v.type || ''}\n> • Score: ${v.score || ''}\n> • Url: ${v.url || ''}`).join("\n\n")}`;
                 m.reply(caption);
             });
         }
