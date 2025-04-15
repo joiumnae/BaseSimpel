@@ -23,7 +23,7 @@ Contoh: ${m.prefix + m.command} blue exorcist
 \`[ Type ]\`
 Manga
 ${m.prefix + m.command} blue exorcist --manga
-${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist --manga
+${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist
 
 \`[ Character ]\`
 ${m.prefix + m.command} okumura, rin --character`
