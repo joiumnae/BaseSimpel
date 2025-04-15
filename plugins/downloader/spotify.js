@@ -71,7 +71,7 @@ let handler = async (m, {
     };
 };
 
-handler.help = ["spotify", "spdl"].map(v => v + ' *[ Download/Search Lagi ]* ');
+handler.help = ["spotify", "spdl"].map(v => v + ' *[ Download/Search Lagu ]* ');
 handler.tags = ["downloader", "internet"];
 handler.command = ["spotify", "spdl"];
 handler.limit = true;
