@@ -253,6 +253,27 @@
        await clearTmp();
     }, 120 * 60 * 1000); // 2 jam sekali
 
+       async function clearsesi() {
+    fs.readdir(`./sessions`, async function(err, files) {
+        if (err) {
+            console.log('Unable to scan directory: ' + err);
+        }
+        let filteredArray = await files.filter(item => item.startsWith("pre-key") ||
+            item.startsWith("sender-key") || item.startsWith("session-") || item.startsWith("app-state")
+        )
+        console.log(filteredArray.length);
+        await filteredArray.forEach(function(file) {
+            fs.unlinkSync(`./sessions/${file}`)
+        });
+      });
+    }
+    
+     setInterval(async () => {
+       await console.log(chalk.bold.yellow('[ Warning ] ') + chalk.white('>>> ') + chalk.yellow(`File Seso Bakalan Di Hapus`));
+       await console.log(chalk.bold.green('[ Cache ] ') + chalk.white('>>> ') + chalk.green(`File Sesi Berhasil Di DIHapus`));
+       await clearsesi();
+    }, 120 * 60 * 1000); // 2 jam sekali
+
     sock.ev.on("contacts.upsert", (update) => {
       for (let contact of update) {
         let id = jidNormalizedUser(contact.id);
