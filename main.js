@@ -133,6 +133,8 @@
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏ ⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 `))
     console.log(chalk.bold.green('[ Script ] ') + chalk.white('>>> ') + chalk.green(`Hanako-Botz Creator: Dxyz - Deku`));
+    const { cpus } = require('os')
+    console.log(chalk.bold.cyan('[ Cpus ] ') + chalk.white('>>> ') + chalk.bold.yellow(`\nOs: ${cpus()[0].model || ''}\nSpeed: ${cpus()[0].speed || ''}`) + chalk.bold.red(`\n${Object.entries(cpus()[0].times).map(([a, b]) => `${a}: ${b}`).join("\n")}`));
 
   async function system() {
     const { state, saveCreds } = await useMultiFileAuthState(config.sessions);
