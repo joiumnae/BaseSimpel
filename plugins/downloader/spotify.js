@@ -24,24 +24,60 @@ let handler = async (m, {
                 url: text
             }
         });
-
+        let linkurl;
+        try {
+            const {
+                data: downloader
+            } = await axios.post('https://spotydown.media/api/download-track', {
+                url: detail.url
+            }, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
+            linkurl = downloader.file_url
+        } catch (e) {
+            try {
+                linkurl = `${api + '/api/download/track?url=' + detail.url}`
+            } catch (e) {}
+        }
         const caption = `📁 Spotify Downloader
 > • *Title:* ${detail.title || ''}
 > • *Artist:* ${detail.artist || ''}
 > • *Album:* ${detail.album || ''}
 > • *Url:* ${detail.url || ''}
-> • *Link-Download:* ${api + '/api/download/track' + detail.url}`;
+> • *Link-Download:* ${linkurl}`;
         m.reply(caption);
-
-        const {
-            data: audio
-        } = await axios(api + '/api/download/track', {
-            post: 'GET',
-            params: {
+        let audio;
+        try {
+            const {
+                data: downloader
+            } = await axios.post('https://spotydown.media/api/download-track', {
                 url: detail.url
-            },
-            responseType: 'arraybuffer'
-        });
+            }, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
+            audio = {
+                url: downloader.file_url
+            }
+        } catch (e) {
+            try {
+                const {
+                    data
+                } = await axios(api + '/api/download/track', {
+                    post: 'GET',
+                    params: {
+                        url: detail.url
+                    },
+                    responseType: 'arraybuffer'
+                });
+                audio = data
+            } catch (e) {}
+        }
 
         conn.sendMessage(m.chat, {
             audio,
@@ -71,7 +107,7 @@ let handler = async (m, {
     };
 };
 
-handler.help = ["spotify", "spdl"].map(v => v + ' *[ Download/Search Lagu ]* ');
+handler.help = ["spotify", "spdl"].map(v => v + ' *[ Download/Search Lagi ]* ');
 handler.tags = ["downloader", "internet"];
 handler.command = ["spotify", "spdl"];
 handler.limit = true;
