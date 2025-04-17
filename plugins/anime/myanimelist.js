@@ -23,10 +23,11 @@ Contoh: ${m.prefix + m.command} blue exorcist
 \`[ Type ]\`
 Manga
 ${m.prefix + m.command} blue exorcist --manga
-${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist --manga
+${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist
 
 \`[ Character ]\`
-${m.prefix + m.command} okumura, rin --character`
+${m.prefix + m.command} okumura, rin --character
+${m.prefix + m.command} https://myanimelist.net/character/24482/Rin_Okumura`
 
         if (!text) return m.reply(message);
         const isManga = m.args.includes('--manga');
@@ -49,7 +50,6 @@ ${m.prefix + m.command} okumura, rin --character`
             Scraper.mal.MalSearchCharacter(input).then(async (a) => {
                 let caption = `🔍Search Character\n\n`;
                 caption += a.map((v, i) => `\`[ ${i + 1} ]\`\n> • *Nama:* ${v.name || ''}\n> • *Alias:* ${v.alias || ''}\n> • *Anime:* ${v.anime || ''}\n> • *Manga:* ${v.manga || ''}\n> • *Url:* ${v.url || ''}`).join("\n\n");
-                m.reply(caption);
                 await conn.sendAliasMessage(m.chat, {
                     text: caption
                 }, a.map((v, i) => ({
