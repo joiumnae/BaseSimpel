@@ -23,7 +23,7 @@ Contoh: ${m.prefix + m.command} blue exorcist
 \`[ Type ]\`
 Manga
 ${m.prefix + m.command} blue exorcist --manga
-${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist
+${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist --manga
 
 \`[ Character ]\`
 ${m.prefix + m.command} okumura, rin --character`
@@ -50,18 +50,50 @@ ${m.prefix + m.command} okumura, rin --character`
                 let caption = `🔍Search Character\n\n`;
                 caption += a.map((v, i) => `\`[ ${i + 1} ]\`\n> • *Nama:* ${v.name || ''}\n> • *Alias:* ${v.alias || ''}\n> • *Anime:* ${v.anime || ''}\n> • *Manga:* ${v.manga || ''}\n> • *Url:* ${v.url || ''}`).join("\n\n");
                 m.reply(caption);
+                await conn.sendAliasMessage(m.chat, {
+                    text: caption
+                }, a.map((v, i) => ({
+                    alias: `${i + 1}`,
+                    response: `${m.prefix + m.command} ${v.url}`
+                })), m);
             })
         } else if (Func.isUrl(text)) {
-            if (!/myanimelist\.net\/manga\//.test(text)) throw '⚠️ Mana Link Nya Buat Liat Manga !';
-            Scraper.mal.MalMangaInfo(text).then(async (a) => {
-                let caption = `📒Detail Manga\n`;
-                caption += `> • *Title:* ${a.title || ''}\n`;
-                caption += `> • *Synops:*\n${a.synops || ''}\n`;
-                caption += `> • *Score:* ${a.score || ''}\n`;
-                caption += `> • *Character:*\n`;
-                caption += a.character.map(v => `> • *Name:* ${v.name || ''}\n> • *Role:* ${v.role || ''}\n> • *Link:* ${v.link || ''}`).join("\n\n");
-                m.reply(caption);
-            });
+            if (/myanimelist\.net\/manga\//.test(text)) {
+                if (!/myanimelist\.net\/manga\//.test(text)) return m.reply('⚠️ Mana Link Nya Buat Liat Manga !');
+                Scraper.mal.MalMangaInfo(text).then(async (a) => {
+                    let caption = `📒Detail Manga\n`;
+                    caption += `> • *Title:* ${a.title || ''}\n`;
+                    caption += `> • *Synops:*\n${a.synops || ''}\n`;
+                    caption += `> • *Score:* ${a.score || ''}\n`;
+                    caption += `> • *Character:*\n`;
+                    caption += a.character.map(v => `> • *Name:* ${v.name || ''}\n> • *Role:* ${v.role || ''}\n> • *Link:* ${v.link || ''}`).join("\n\n");
+                    m.reply(caption);
+                });
+            } else if (/https:\/\/myanimelist\.net\/character\//.test(text)) {
+                if (!/https:\/\/myanimelist\.net\/character\//.test(text)) return m.reply('⚠️ Mana Link Character Nya !')
+                const match = text.match(/https:\/\/myanimelist\.net\/character\/(\d+)(?:\/[^/]+)?/);
+                const characterId = match[1];
+                const character = await fetch('https://api.jikan.moe/v4/characters/' + characterId).then(a => a.json());
+                if (!character) return m.reply('⚠️ Maaf Character Yg Anda Cari Tidak Di Temukan');
+                const message = `📒Detail Character
+> • *Name:* ${character.data.name || ''}
+> • *Name Jepang:* ${character.data.name_kanji || ''}
+> • *Nickname:*
+${character.data.nicknames.map(a => `${a}`).join("\n") || ''}
+> • *Id:* ${character.data.mal_id || ''}
+> • *Favorite:* ${character.data.favorites || ''}
+> • *About:*
+${character.data.about || ''}
+> • *Url:* ${character.data.url || ''}`;
+                await conn.sendMessage(m.chat, {
+                    image: {
+                        url: character.data.images.jpg.image_url
+                    },
+                    caption: message
+                }, {
+                    quoted: m
+                });
+            }
         } else {
             Scraper.mal.MalSearchAnime(text).then(async (a) => {
                 if (!a.length > 0) throw '⚠️ Pencarian Anda Tidak Di Temukan';
