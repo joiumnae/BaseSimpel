@@ -51,7 +51,7 @@ let yukio = async (m, {
             const getArray = await axios.get(ytdl.result.download, {
                 responseType: 'arraybuffer'
             });
-            if (size > 100 * 1024 * 1024) {
+            if (getArray > 100 * 1024 * 1024) {
                 await sock.sendMessage(m.cht, {
                     document: {
                         url: ytdl.result.download
