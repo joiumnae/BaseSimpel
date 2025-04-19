@@ -23,8 +23,8 @@ ${m.prefix + m.command} https://myanimelist.net/manga/13492/Ao_no_Exorcist
 
 \`[ Character ]\`
 ${m.prefix + m.command} okumura, rin --character
-${m.prefix + m.command} https://myanimelist.net/character/66171/Rin_Okumura --character
-${m.prefix + m.command} https://myanimelist.net/character/117909/Izuku_Midoriya`
+${m.prefix + m.command} https://myanimelist.net/anime/9919/Ao_no_Exorcist --character
+${m.prefix + m.command} https://myanimelist.net/character/66171/Rin_Okumura`
 
     if (!text) return m.reply(message);
     const isManga = m.args.includes('--manga');
