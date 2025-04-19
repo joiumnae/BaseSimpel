@@ -95,9 +95,6 @@ ${data.data.map((a, i) => `\`[ ${i + 1} ]\`\n> • *Title:* ${a.title || ''} ali
             }, data.data.map((a, i) => ({
                 alias: `${i + 1}`,
                 response: `${m.prefix + m.command} ${a.url} --character`
-             }, {
-                alias: `theme ${i + 1}`,
-                response: `${m.prefix + m.command} ${a.url} --theme`
             })), m)
         }
     }
